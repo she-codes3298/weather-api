@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title>weather api</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style-type: none;
+            padding: 50px auto;
+            max-width: 300px;
+            background: #d59bf6;
+            list-style: none;
+            margin: 0;
+            font-size: 16px;
+            font-weight: 100;
+            line-height: 19px;
+        }
+
+        .style-page {
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+            border: 1p;
+            background: #edb1f1;
+            max-width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="style-page">
+            <form id="display-city">
+                <input type="text" placeholder="type the city" id="city" />
+                <input type="submit" placeholder="Submit" />
+            </form>
+            <ul></ul>
+            <li>
+                <div class="row">
+                    <div class="col-5">Patna</div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-9">Last Updated:<span id="day">Monday 5.00 </span></div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-6">haze</div>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
