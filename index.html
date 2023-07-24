@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,9 +13,7 @@
 
         li {
             list-style-type: none;
-            padding: 50px auto;
             max-width: 300px;
-            background: #d59bf6;
             list-style: none;
             margin: 0;
             font-size: 16px;
@@ -34,29 +33,46 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="style-page">
+    <div class="style-page">
+        <div class="container">
             <form id="display-city">
                 <input type="text" placeholder="type the city" id="city" />
-                <input type="submit" placeholder="Submit" />
+                <input type="submit" value="Submit" />
             </form>
-            <ul></ul>
-            <li>
-                <div class="row">
-                    <div class="col-5">Patna</div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-9">Last Updated:<span id="day">Monday 5.00 </span></div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-6">haze</div>
-                </div>
-            </li>
+            <ul>
+                <li>
+                    <div class="row">
+                        <div class="col-5">Patna</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div class="col-9">Last Updated:<span id="day">Monday 5.00 </span></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div class="col-5">haze</div>
+                    </div>
+                </li>
             </ul>
+            <div class="row">
+                <div class="col-6">
+                    <div class="clearfix weather-temperature">
+                        <img src="http://openweathermap.org/img/wn/50n@2x.png" alt="haze" id="icon" class="float-left">
+                        <div class="float-left">
+                            <strong id="temperature">35</strong><span class="units"><a href="#" id="celsius-link"
+                                    class="active">°C</a> | <a href="#" id="fahrenheit-link">°F</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <ul>
+                        <li>Humidity: <span id="humidity">63</span>%</li>
+                        <li>Wind: <span id="wind">15</span> km/h</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>
