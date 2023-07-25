@@ -3,6 +3,7 @@
 
 <head>
     <title>weather api</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
@@ -40,21 +41,21 @@
     <div class="style-page">
         <div class="container">
             <form id="display-city">
-                <input type="text" placeholder="type the city" id="city" />
+                <input type="text" placeholder="type the city" id="detail" />
                 <input type="submit" value="Submit" />
             </form>
             <ul>
-                <li>
+                <li id="place">
                     <div class="row">
                         <div class="col-5">Patna</div>
                     </div>
                 </li>
-                <li>
+                <li id="day-name">
                     <div class="row">
-                        <div class="col-9">Last Updated:<span id="day">Monday 5.00 </span></div>
+                        <div class="col-9">Last Updated:tuesday 5.00 </div>
                     </div>
                 </li>
-                <li>
+                <li id="description">
                     <div class="row">
                         <div class="col-5">haze</div>
                     </div>
@@ -81,6 +82,78 @@
     </div>
     <small>
         <a href="https://github.com/she-codes3298/weather-api"> open source code</a>by Rupali Bharti </small>
+    <script>
+        function formatDate ( timestamp ) {
+            let date = new Date( timestamp );
+            let hours = date.getHours();
+            if ( hours < 10 ) {
+                hours = `0${ hours }`;
+            }
+            let minutes = date.getMinutes();
+            if ( minutes < 10 ) {
+                minutes = `0${ minutes }`;
+            }
+
+            let days = [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+            ];
+            let day = days[ date.getDay() ];
+
+            let update = document.querySelector( "#day-name" );
+            update.innerHTML = `Last updated:${ day } ${ hours }:${ minutes }`;
+        }
+
+        function displayTemperature ( response ) {
+
+            let temp = document.querySelector( "#temperature" );
+            temp.innerHTML = Math.round( response.data.main.temp );
+
+            let descriptionElement = document.querySelector( "#description" );
+            let humidityElement = document.querySelector( "#humidity" );
+            let windElement = document.querySelector( "#wind" );
+            let dateElement = document.querySelector( "#date" );
+            let iconElement = document.querySelector( "#icon" );
+
+            let celsiusTemperature = response.data.main.temp;
+
+            temperatureElement.innerHTML = Math.round( celsiusTemperature );
+            cityElement.innerHTML = response.data.name;
+            descriptionElement.innerHTML = response.data.weather[ 0 ].description;
+            humidityElement.innerHTML = response.data.main.humidity;
+            windElement.innerHTML = Math.round( response.data.wind.speed * 3.6 );
+            dateElement.innerHTML = formatDate( response.data.dt * 1000 );
+            iconElement.setAttribute(
+                "src",
+                `http://openweathermap.org/img/wn/${ response.data.weather[ 0 ].icon }@2x.png`
+            );
+            iconElement.setAttribute( "alt", response.data.weather[ 0 ].description );
+
+        }
+
+
+
+        function start ( city ) {
+
+            let apiKey = "cabdbda40038ba7d1165b953b1c7bd6c";
+            let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${ city }&appid=${ apiKey }&units=metric`;
+            axios.get( apiUrl ).then( displayTemperature );
+        }
+        function selectCity ( event ) {
+            event.preventDefault()
+            let element = document.querySelector( "#detail" );
+            let summer = document.querySelector( "#place" );
+            summer.innerHTML = element.value;
+            start( element.value );
+
+        }
+        let form = document.querySelector( "#display-city" );
+        form.addEventListener( "submit", selectCity );</script>
 </body>
 
 </html>
